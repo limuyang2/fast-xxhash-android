@@ -132,65 +132,6 @@ long hash = XXHash.xxh32Bytes(full, 7, 6, 0); // full[7..13) = "World!"
 
 > **Note**: All return values are Kotlin `Long` (signed 64-bit). xxHash produces unsigned hash values. When the high bit is set, `Long.toHexString()` outputs the unsigned hexadecimal representation.
 
-### Compose Integration
-
-```kotlin
-@Composable
-fun HashScreen(input: String) {
-    val data = input.toByteArray()
-    val hash = data.xxh64()
-    Text(text = hash.toHexString())
-}
-```
-
-### Compatibility with C Library
-
-This library produces results identical to [xxHash](https://github.com/Cyan4973/xxHash/) v0.8.3:
-
-```
-XXH32("", 0)            = 0x02CC5D05
-XXH64("", 0)            = 0xEF46DB3751D8E999
-XXH3_64bits("")         = 0x2D06800538D394C2
-XXH3_128bits("")        = { low: 0x6001C324468D497F, high: 0x99AA06D3014798D8 }
-```
-
-## Project Structure
-
-```
-xxhash-android/
-├── app/                          # Demo app (Compose)
-├── lib/
-│   ├── build.gradle.kts          # Android Library build config
-│   ├── CMakeLists.txt            # CMake build script
-│   └── src/main/
-│       ├── cpp/
-│       │   ├── xxhash.h          # xxHash v0.8.3 header
-│       │   ├── xxhash.c          # xxHash v0.8.3 source
-│       │   └── xxhash_jni.c      # JNI bridge layer
-│       └── java/
-│           └── .../XXHash.kt     # Kotlin API wrapper
-├── build.gradle.kts
-├── settings.gradle.kts
-└── gradle/
-    └── libs.versions.toml
-```
-
-## Technical Details
-
-### Build
-
-- Built with CMake 3.22.1
-- Compiler optimization: `-O3`
-- xxHash statically linked into `libmuxxhash.so`
-- Supported ABIs: `armeabi-v7a`, `arm64-v8a`, `x86`, `x86_64`
-
-### 16KB Page Size Alignment
-
-Android 15 (API 35) introduced support for 16KB page sizes. The shared libraries in this project are built with 16KB page size alignment to ensure compatibility on newer devices.
-
-### JNI Overhead
-
-This library uses a single-call pattern: pass data to the C layer, compute the hash, and return the result. JNI call overhead is minimal (microsecond-level), making it suitable for performance-sensitive scenarios.
 
 ## License
 

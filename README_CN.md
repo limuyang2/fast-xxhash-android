@@ -126,65 +126,6 @@ long hash = XXHash.xxh32Bytes(full, 7, 6, 0); // full[7..13) = "World!"
 
 > **注意**：所有返回值均为 Kotlin `Long`（有符号 64 位）。xxhash 产生的是无符号哈希值，高位为 1 时 `Long.toHexString()` 输出的是无符号十六进制表示。
 
-### Compose 中使用
-
-```kotlin
-@Composable
-fun HashScreen(input: String) {
-    val data = input.toByteArray()
-    val hash = XXHash.xxh64(data, 0)
-    Text(text = hash.toHexString())
-}
-```
-
-### 与原版 C 库对照
-
-本库行为与 [xxHash](https://github.com/Cyan4973/xxHash/) v0.8.3 完全一致：
-
-```
-XXH32("", 0)            = 0x02CC5D05
-XXH64("", 0)            = 0xEF46DB3751D8E999
-XXH3_64bits("")         = 0x2D06800538D394C2
-XXH3_128bits("")        = { low: 0x6001C324468D497F, high: 0x99AA06D3014798D8 }
-```
-
-## 项目结构
-
-```
-xxhash-android/
-├── app/                          # Demo 应用（Compose）
-├── lib/
-│   ├── build.gradle.kts          # Android Library 构建配置
-│   ├── CMakeLists.txt            # CMake 构建脚本
-│   └── src/main/
-│       ├── cpp/
-│       │   ├── xxhash.h          # xxHash v0.8.3 头文件
-│       │   ├── xxhash.c          # xxHash v0.8.3 源码
-│       │   └── xxhash_jni.c      # JNI 桥接层
-│       └── java/
-│           └── .../XXHash.kt     # Kotlin API 封装
-├── build.gradle.kts
-├── settings.gradle.kts
-└── gradle/
-    └── libs.versions.toml
-```
-
-## 技术细节
-
-### 编译方式
-
-- 使用 CMake 3.22.1 构建 native 库
-- 编译选项 `-O3` 最大优化
-- xxHash 以静态链接方式编译进 `libmuxxhash.so`
-- 支持架构：`armeabi-v7a`、`arm64-v8a`、`x86`、`x86_64`
-
-### 16KB Page Size 适配
-
-Android 15（API 35）引入了对 16KB 页面大小的支持。本库的 SO 文件已针对 16KB 页面大小对齐构建，确保在新设备上正常运行。
-
-### JNI 调用开销
-
-本库采用一次调用模式：数据传入 C 层 → 计算哈希 → 返回结果。JNI 调用本身开销极小（微秒级），适合对性能敏感的场景。
 
 ## 许可证
 
