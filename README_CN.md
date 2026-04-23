@@ -16,14 +16,14 @@
 
 xxHash 是目前最快的非加密哈希算法之一。以下为官方 C 实现与常见替代方案的对比：
 
-| 算法 | 速度 (GB/s) | 哈希位数 |
-|------|------------|---------|
-| XXH3-64 | 31.5 | 64 |
-| XXH3-128 | 28.2 | 128 |
-| XXH64 | 19.3 | 64 |
-| XXH32 | 9.8 | 32 |
-| MD5 | 0.65 | 128 |
-| SHA-256 | 0.42 | 256 |
+| 算法       | 速度 (GB/s) | 哈希位数 |
+|----------|-----------|------|
+| XXH3-64  | 31.5      | 64   |
+| XXH3-128 | 28.2      | 128  |
+| XXH64    | 19.3      | 64   |
+| XXH32    | 9.8       | 32   |
+| MD5      | 0.65      | 128  |
+| SHA-256  | 0.42      | 256  |
 
 > 数据来源：[xxHash Benchmark](https://github.com/Cyan4973/xxHash/#benchmark)
 
@@ -109,16 +109,16 @@ long hash = XXHash.xxh32Bytes(full, 7, 6, 0); // full[7..13) = "World!"
 
 ### 完整 API
 
-| 方法 | 参数 | 返回值 | 说明 |
-|------|------|--------|------|
-| `xxh32(input, seed)` | `ByteArray, Int` | `Long` | XXH32 哈希 |
-| `xxh32Bytes(input, offset, length, seed)` | `ByteArray, Int, Int, Int` | `Long` | XXH32 哈希（切片） |
-| `xxh64(input, seed)` | `ByteArray, Long` | `Long` | XXH64 哈希 |
-| `xxh64Bytes(input, offset, length, seed)` | `ByteArray, Int, Int, Long` | `Long` | XXH64 哈希（切片） |
-| `xxh3_64bits(input)` | `ByteArray` | `Long` | XXH3-64 哈希 |
-| `xxh3_64bitsWithSeed(input, seed)` | `ByteArray, Long` | `Long` | XXH3-64 哈希（带 seed） |
-| `xxh3_128bits(input)` | `ByteArray` | `LongArray[2]` | XXH3-128 哈希 |
-| `xxh3_128bitsWithSeed(input, seed)` | `ByteArray, Long` | `LongArray[2]` | XXH3-128 哈希（带 seed） |
+| 方法                                        | 参数                          | 返回值            | 说明                  |
+|-------------------------------------------|-----------------------------|----------------|---------------------|
+| `xxh32(input, seed)`                      | `ByteArray, Int`            | `Long`         | XXH32 哈希            |
+| `xxh32Bytes(input, offset, length, seed)` | `ByteArray, Int, Int, Int`  | `Long`         | XXH32 哈希（切片）        |
+| `xxh64(input, seed)`                      | `ByteArray, Long`           | `Long`         | XXH64 哈希            |
+| `xxh64Bytes(input, offset, length, seed)` | `ByteArray, Int, Int, Long` | `Long`         | XXH64 哈希（切片）        |
+| `xxh3_64bits(input)`                      | `ByteArray`                 | `Long`         | XXH3-64 哈希          |
+| `xxh3_64bitsWithSeed(input, seed)`        | `ByteArray, Long`           | `Long`         | XXH3-64 哈希（带 seed）  |
+| `xxh3_128bits(input)`                     | `ByteArray`                 | `LongArray[2]` | XXH3-128 哈希         |
+| `xxh3_128bitsWithSeed(input, seed)`       | `ByteArray, Long`           | `LongArray[2]` | XXH3-128 哈希（带 seed） |
 
 > **注意**：所有返回值均为 Kotlin `Long`（有符号 64 位）。xxhash 产生的是无符号哈希值，高位为 1 时 `Long.toHexString()` 输出的是无符号十六进制表示。
 

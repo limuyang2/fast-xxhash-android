@@ -22,13 +22,13 @@ An Android JNI wrapper for [xxHash](https://github.com/Cyan4973/xxHash/), compil
 xxHash is one of the fastest non-cryptographic hash algorithms available:
 
 | Algorithm | Speed (GB/s) | Hash Bits |
-|-----------|-------------|-----------|
-| XXH3-64   | 31.5        | 64        |
-| XXH3-128  | 28.2        | 128       |
-| XXH64     | 19.3        | 64        |
-| XXH32     | 9.8         | 32        |
-| MD5       | 0.65        | 128       |
-| SHA-256   | 0.42        | 256       |
+|-----------|--------------|-----------|
+| XXH3-64   | 31.5         | 64        |
+| XXH3-128  | 28.2         | 128       |
+| XXH64     | 19.3         | 64        |
+| XXH32     | 9.8          | 32        |
+| MD5       | 0.65         | 128       |
+| SHA-256   | 0.42         | 256       |
 
 > Source: [xxHash Benchmark](https://github.com/Cyan4973/xxHash/#benchmark)
 
@@ -115,16 +115,16 @@ long hash = XXHash.xxh32Bytes(full, 7, 6, 0); // full[7..13) = "World!"
 
 ### API Reference
 
-| Method | Parameters | Returns | Description |
-|--------|-----------|---------|-------------|
-| `xxh32(input, seed)` | `ByteArray, Int` | `Long` | XXH32 hash |
-| `xxh32Bytes(input, offset, length, seed)` | `ByteArray, Int, Int, Int` | `Long` | XXH32 hash (slice) |
-| `xxh64(input, seed)` | `ByteArray, Long` | `Long` | XXH64 hash |
-| `xxh64Bytes(input, offset, length, seed)` | `ByteArray, Int, Int, Long` | `Long` | XXH64 hash (slice) |
-| `xxh3_64bits(input)` | `ByteArray` | `Long` | XXH3-64 hash |
-| `xxh3_64bitsWithSeed(input, seed)` | `ByteArray, Long` | `Long` | XXH3-64 hash (with seed) |
-| `xxh3_128bits(input)` | `ByteArray` | `LongArray[2]` | XXH3-128 hash |
-| `xxh3_128bitsWithSeed(input, seed)` | `ByteArray, Long` | `LongArray[2]` | XXH3-128 hash (with seed) |
+| Method                                    | Parameters                  | Returns        | Description               |
+|-------------------------------------------|-----------------------------|----------------|---------------------------|
+| `xxh32(input, seed)`                      | `ByteArray, Int`            | `Long`         | XXH32 hash                |
+| `xxh32Bytes(input, offset, length, seed)` | `ByteArray, Int, Int, Int`  | `Long`         | XXH32 hash (slice)        |
+| `xxh64(input, seed)`                      | `ByteArray, Long`           | `Long`         | XXH64 hash                |
+| `xxh64Bytes(input, offset, length, seed)` | `ByteArray, Int, Int, Long` | `Long`         | XXH64 hash (slice)        |
+| `xxh3_64bits(input)`                      | `ByteArray`                 | `Long`         | XXH3-64 hash              |
+| `xxh3_64bitsWithSeed(input, seed)`        | `ByteArray, Long`           | `Long`         | XXH3-64 hash (with seed)  |
+| `xxh3_128bits(input)`                     | `ByteArray`                 | `LongArray[2]` | XXH3-128 hash             |
+| `xxh3_128bitsWithSeed(input, seed)`       | `ByteArray, Long`           | `LongArray[2]` | XXH3-128 hash (with seed) |
 
 > **Note**: All return values are Kotlin `Long` (signed 64-bit). xxHash produces unsigned hash values. When the high bit is set, `Long.toHexString()` outputs the unsigned hexadecimal representation.
 
