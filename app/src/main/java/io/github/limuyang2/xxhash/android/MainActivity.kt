@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -29,12 +28,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalClipboardManager
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import io.github.limuyang2.xxhash.android.ui.theme.XxhashandroidTheme
-import io.github.limuyang2.xxhash.lib.XXHash
+import io.github.limuyang2.xxhash.lib.xxh32
+import io.github.limuyang2.xxhash.lib.xxh3As128
+import io.github.limuyang2.xxhash.lib.xxh64
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,11 +77,12 @@ fun XxHashDemoApp() {
             if (input.isNotEmpty()) {
                 val data = input.toByteArray()
 
-                HashCard("XXH32", XXHash.xxh32(data, 0))
-                HashCard("XXH64", XXHash.xxh64(data, 0))
-                HashCard("XXH3-64", XXHash.xxh3_64bits(data))
+                data.xxh32()
+                HashCard("XXH32", data.xxh32())
+                HashCard("XXH64", data.xxh64())
+                HashCard("XXH3-64", data.xxh64())
 
-                val h128 = XXHash.xxh3_128bits(data)
+                val h128 = data.xxh3As128()
                 HashCard("XXH3-128", low = h128[0], high = h128[1])
             }
         }
@@ -92,10 +92,9 @@ fun XxHashDemoApp() {
 @Composable
 fun HashCard(label: String, hash: Long) {
     val hex = hash.toHexString()
-    val clipboard = LocalClipboardManager.current
 
     Card(
-        onClick = { clipboard.setText(AnnotatedString(hex)) },
+        onClick = { },
         modifier = Modifier.fillMaxWidth()
     ) {
         Row(
@@ -119,10 +118,9 @@ fun HashCard(label: String, hash: Long) {
 @Composable
 fun HashCard(label: String, low: Long, high: Long) {
     val hex = high.toHexString() + low.toHexString()
-    val clipboard = LocalClipboardManager.current
 
     Card(
-        onClick = { clipboard.setText(AnnotatedString(hex)) },
+        onClick = { },
         modifier = Modifier.fillMaxWidth()
     ) {
         Column(
