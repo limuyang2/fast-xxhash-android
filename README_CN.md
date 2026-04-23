@@ -54,8 +54,6 @@ dependencies {
 本库提供 `String`、`ByteArray`、`ByteBuffer` 扩展函数，无需手动调用 `XXHash` 对象：
 
 ```kotlin
-import io.github.limuyang2.xxhash.lib.*
-
 // String 扩展
 val h32 = "Hello, World!".xxh32()
 val h64 = "Hello, World!".xxh64()
@@ -84,8 +82,6 @@ buffer.xxh64()
 ### Java 用法
 
 ```java
-import io.github.limuyang2.xxhash.lib.XXHash;
-
 byte[] data = "Hello, World!".getBytes();
 
 // XXH32

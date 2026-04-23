@@ -60,8 +60,6 @@ dependencies {
 This library provides extension functions for `String`, `ByteArray`, and `ByteBuffer`:
 
 ```kotlin
-import io.github.limuyang2.xxhash.lib.*
-
 // String extensions
 val h32 = "Hello, World!".xxh32()
 val h64 = "Hello, World!".xxh64()
@@ -90,8 +88,6 @@ buffer.xxh64()
 ### Java
 
 ```java
-import io.github.limuyang2.xxhash.lib.XXHash;
-
 byte[] data = "Hello, World!".getBytes();
 
 // XXH32
