@@ -47,6 +47,14 @@ android {
             version = "3.22.1"
         }
     }
+
+    publishing {
+        singleVariant("release") {
+            // if you don't want sources/javadoc, remove these lines
+            withSourcesJar()
+//            withJavadocJar()
+        }
+    }
 }
 
 dependencies {
@@ -58,7 +66,7 @@ dependencies {
 
 //---------- maven upload info -----------------------------------
 
-val versionName = "1.0.0"
+val versionName = "1.0.1"
 
 var signingKeyId = ""//签名的密钥后8位
 var signingPassword = ""//签名设置的密码
