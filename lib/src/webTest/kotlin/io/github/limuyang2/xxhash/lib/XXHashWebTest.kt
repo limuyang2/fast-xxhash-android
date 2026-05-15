@@ -48,7 +48,7 @@ class XXHashWebTest {
         assertEquals("2d06800538d394c2", XXHash.xxh3_64bits(byteArrayOf()).toFixedHex())
         assertEquals("9555e8555c62dcfd", XXHash.xxh3_64bits("hello".encodeToByteArray()).toFixedHex())
         assertEquals("60415d5f616602aa", XXHash.xxh3_64bits("Hello, World!".encodeToByteArray()).toFixedHex())
-        assertEquals("0bafa072f07db7937", XXHash.xxh3_64bitsWithSeed("hello".encodeToByteArray(), 42).toFixedHex())
+        assertEquals("bafa072f07db7937", XXHash.xxh3_64bitsWithSeed("hello".encodeToByteArray(), 42).toFixedHex())
     }
 
     @Test

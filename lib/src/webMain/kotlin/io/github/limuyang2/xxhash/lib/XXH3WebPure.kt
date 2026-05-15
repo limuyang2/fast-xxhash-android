@@ -76,7 +76,7 @@ internal object XXH3WebPure {
             len > 8 -> len9to16_64(input, len, secret, seed)
             len >= 4 -> len4to8_64(input, len, secret, seed)
             len > 0 -> len1to3_64(input, len, secret, seed)
-            else -> avalanche64(seed xor (read64LE(secret, 56) xor read64LE(secret, 64)))
+            else -> xxh64Avalanche(seed xor (read64LE(secret, 56) xor read64LE(secret, 64)))
         }
 
     private fun len1to3_64(input: ByteArray, len: Int, secret: ByteArray, seed: Long): Long {
