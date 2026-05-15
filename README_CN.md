@@ -67,20 +67,6 @@ val slice = bytes.xxh32(offset = 7, length = 6)
 val seeded = bytes.xxh64(seed = 42)
 ```
 
-### Java
-
-```java
-byte[] data = "Hello, World!".getBytes();
-
-long h32 = XXHash.xxh32(data, 0);
-long h64 = XXHash.xxh64(data, 0);
-long h3_64 = XXHash.xxh3_64bits(data);
-long h3_64_seed = XXHash.xxh3_64bitsWithSeed(data, 42);
-
-long[] h3_128 = XXHash.xxh3_128bits(data); // [low64, high64]
-long[] h3_128_seed = XXHash.xxh3_128bitsWithSeed(data, 42);
-```
-
 ## 公共 API
 
 | 方法 | 返回值 | 说明 |
