@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import java.io.FileInputStream
 import java.io.InputStreamReader
 import java.util.Properties
@@ -67,10 +68,13 @@ kotlin {
     jvm()
 
     js {
+        browser()
         nodejs()
     }
 
+    @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
+        browser()
         nodejs()
     }
     applyDefaultHierarchyTemplate()
@@ -170,7 +174,7 @@ kotlin {
 
 //---------- maven upload info -----------------------------------
 
-val versionName = "1.0.1"
+val versionName = "2.0.0"
 
 var signingKeyId = "" //签名的密钥后8位
 var signingPassword = "" //签名设置的密码
@@ -195,6 +199,26 @@ if (localProperties.exists()) {
 group = "io.github.limuyang2"
 version = versionName
 
+val publishWebPublicationsToRepo = tasks.register("publishWebPublicationsToRepo") {
+    group = "publishing"
+    description = "Publish Kotlin Multiplatform metadata plus JS/WasmJS artifacts to the configured Maven repository."
+    dependsOn(
+        "publishKotlinMultiplatformPublicationToMavenRepository",
+        "publishJsPublicationToMavenRepository",
+        "publishWasmJsPublicationToMavenRepository",
+    )
+}
+
+val publishWebPublicationsToMavenLocal = tasks.register("publishWebPublicationsToMavenLocal") {
+    group = "publishing"
+    description = "Publish Kotlin Multiplatform metadata plus JS/WasmJS artifacts to Maven Local."
+    dependsOn(
+        "publishKotlinMultiplatformPublicationToMavenLocal",
+        "publishJsPublicationToMavenLocal",
+        "publishWasmJsPublicationToMavenLocal",
+    )
+}
+
 publishing {
     publications.withType<MavenPublication>().configureEach {
         groupId = "io.github.limuyang2"
@@ -204,6 +228,8 @@ publishing {
             "kotlinMultiplatform" -> "xxhash"
             "android" -> "xxhash-android"
             "jvm" -> "xxhash-jvm"
+            "js" -> "xxhash-js"
+            "wasmJs" -> "xxhash-wasm-js"
             "iosArm64" -> "xxhash-ios-arm64"
             "iosSimulatorArm64" -> "xxhash-ios-simulator-arm64"
             else -> artifactId
@@ -239,6 +265,7 @@ publishing {
 
     repositories {
         maven {
+            name = "Maven"
             setUrl("$rootDir/RepoDir")
         }
     }
