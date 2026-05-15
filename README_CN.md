@@ -1,7 +1,6 @@
 # XXHash Kotlin Multiplatform
 
-[![Build](https://github.com/limuyang2/fast-xxhash-kmp/actions/workflows/test.yml/badge.svg)](https://github.com/limuyang2/fast-xxhash-android/actions/workflows/build.yml)
-[![Test](https://github.com/limuyang2/fast-xxhash-android/actions/workflows/android-test.yml/badge.svg)](https://github.com/limuyang2/fast-xxhash-android/actions/workflows/android-test.yml)
+[![Test](https://github.com/limuyang2/fast-xxhash-android/actions/workflows/test.yml/badge.svg)](https://github.com/limuyang2/fast-xxhash-android/actions/workflows/test.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.limuyang2/xxhash.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.limuyang2/xxhash)
 
 面向 Kotlin Multiplatform 的 [xxHash](https://github.com/Cyan4973/xxHash/) 支持库，支持 Android、JVM、iOS、JS、Wasm。
