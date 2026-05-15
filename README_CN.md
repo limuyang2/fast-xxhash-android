@@ -1,6 +1,6 @@
 # XXHash Kotlin Multiplatform
 
-[![Build](https://github.com/limuyang2/fast-xxhash-android/actions/workflows/build.yml/badge.svg)](https://github.com/limuyang2/fast-xxhash-android/actions/workflows/build.yml)
+[![Build](https://github.com/limuyang2/fast-xxhash-kmp/actions/workflows/test.yml/badge.svg)](https://github.com/limuyang2/fast-xxhash-android/actions/workflows/build.yml)
 [![Test](https://github.com/limuyang2/fast-xxhash-android/actions/workflows/android-test.yml/badge.svg)](https://github.com/limuyang2/fast-xxhash-android/actions/workflows/android-test.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.limuyang2/xxhash.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.limuyang2/xxhash)
 
