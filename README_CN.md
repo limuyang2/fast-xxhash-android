@@ -38,6 +38,7 @@
 
 业务项目通常直接依赖根 KMP 坐标：
 
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.limuyang2/xxhash.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.limuyang2/xxhash)
 ```kotlin
 dependencies {
     implementation("io.github.limuyang2:xxhash:<latest-version>")

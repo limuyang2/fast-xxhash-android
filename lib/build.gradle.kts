@@ -199,6 +199,11 @@ if (localProperties.exists()) {
 group = "io.github.limuyang2"
 version = versionName
 
+val emptyJavadocJar by tasks.registering(Jar::class) {
+    archiveClassifier.set("javadoc")
+    description = "Assembles an empty javadoc jar required by Maven Central validation."
+}
+
 val publishWebPublicationsToRepo = tasks.register("publishWebPublicationsToRepo") {
     group = "publishing"
     description = "Publish Kotlin Multiplatform metadata plus JS/WasmJS artifacts to the configured Maven repository."
@@ -224,10 +229,11 @@ publishing {
         groupId = "io.github.limuyang2"
         version = versionName
 
+
         artifactId = when (name) {
             "kotlinMultiplatform" -> "xxhash"
             "android" -> "xxhash-android"
-            "jvm" -> "xxhash-jvm"
+            "jvm" -> "xxhash-jvm".apply { artifact(emptyJavadocJar) }
             "js" -> "xxhash-js"
             "wasmJs" -> "xxhash-wasm-js"
             "iosArm64" -> "xxhash-ios-arm64"

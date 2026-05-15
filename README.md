@@ -39,6 +39,7 @@ This means the public API is shared, but the backend differs by target.
 
 For consumers, use the root KMP coordinate:
 
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.limuyang2/xxhash.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.limuyang2/xxhash)
 ```kotlin
 dependencies {
     implementation("io.github.limuyang2:xxhash:<latest-version>")
