@@ -5,7 +5,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.limuyang2/xxhash.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.limuyang2/xxhash)
 [![中文文档](https://img.shields.io/badge/%E6%96%87%E6%A1%A3-%E4%B8%AD%E6%96%87-blue)](https://github.com/limuyang2/fast-xxhash-android/blob/main/README_CN.md)
 
-Kotlin Multiplatform bindings for [xxHash](https://github.com/Cyan4973/xxHash/) with support for Android, JVM, iOS, JS, and Wasm.
+Kotlin Multiplatform Library for [xxHash](https://github.com/Cyan4973/xxHash/) with support for Android, JVM, iOS, JS, and Wasm.
 
 The core library is in `:lib`. This repository also includes demo apps for Android, iOS, and Web, plus a shared Compose UI module.
 
@@ -17,14 +17,6 @@ The core library is in `:lib`. This repository also includes demo apps for Andro
 - iOS uses the same original C source implementation as Android, exposed through Kotlin/Native cinterop
 - JS and WasmJS currently use a pure Kotlin implementation maintained in `webMain`
 
-## Modules
-
-- `lib`: publishable KMP library
-- `lib_android_native`: Android JNI/native packaging module
-- `commonApp`: shared Compose demo UI
-- `androidApp`: Android demo app
-- `iosApp`: iOS demo app
-- `webApp`: JS/Wasm browser demo app
 
 ## Platform implementation notes
 
@@ -33,11 +25,9 @@ The core library is in `:lib`. This repository also includes demo apps for Andro
 - JVM: JVM-side implementation backed by `org.lz4:lz4-java` and `net.openhft:zero-allocation-hashing`
 - Web: pure Kotlin implementation in `lib/src/webMain/kotlin/io/github/limuyang2/xxhash/lib`
 
-This means the public API is shared, but the backend differs by target.
+The public API is consistent, but the JVM and Web implementations are not exactly the same.
 
 ## Installation
-
-For consumers, use the root KMP coordinate:
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.limuyang2/xxhash.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.limuyang2/xxhash)
 ```kotlin

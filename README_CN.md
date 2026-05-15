@@ -4,7 +4,7 @@
 [![Test](https://github.com/limuyang2/fast-xxhash-android/actions/workflows/android-test.yml/badge.svg)](https://github.com/limuyang2/fast-xxhash-android/actions/workflows/android-test.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.limuyang2/xxhash.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.limuyang2/xxhash)
 
-面向 Kotlin Multiplatform 的 [xxHash](https://github.com/Cyan4973/xxHash/) 绑定库，支持 Android、JVM、iOS、JS、Wasm。
+面向 Kotlin Multiplatform 的 [xxHash](https://github.com/Cyan4973/xxHash/) 支持库，支持 Android、JVM、iOS、JS、Wasm。
 
 核心库位于 `:lib`。仓库中同时包含 Android、iOS、Web 的示例应用，以及共享的 Compose UI 模块。
 
@@ -16,15 +16,6 @@
 - iOS 和 Android 一样，直接基于原始 C 源码实现，通过 Kotlin/Native cinterop 暴露
 - JS / WasmJS 当前使用 `webMain` 下纯 Kotlin 自行实现的版本
 
-## 模块结构
-
-- `lib`：可发布的 KMP 库
-- `lib_android_native`：Android JNI / native 打包模块
-- `commonApp`：共享 Compose 示例 UI
-- `androidApp`：Android 示例应用
-- `iosApp`：iOS 示例应用
-- `webApp`：JS / Wasm 浏览器示例应用
-
 ## 平台实现说明
 
 - Android：通过 `lib_android_native/src/main/cpp/xxhash.c` 的 JNI 封装调用原始 C 实现
@@ -32,11 +23,11 @@
 - JVM：基于 `org.lz4:lz4-java` 和 `net.openhft:zero-allocation-hashing`
 - Web：使用 `lib/src/webMain/kotlin/io/github/limuyang2/xxhash/lib` 下纯 Kotlin 自行实现的版本
 
-也就是说，公开 API 是一致的，但各平台后端实现并不完全相同。
+也就是说，公开 API 是一致的，但JVM、Web实现并不完全相同。
 
 ## 引入方式
 
-业务项目通常直接依赖根 KMP 坐标：
+业务项目通常直接依赖：
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.limuyang2/xxhash.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.limuyang2/xxhash)
 ```kotlin
