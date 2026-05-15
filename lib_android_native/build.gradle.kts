@@ -1,6 +1,11 @@
+import java.io.FileInputStream
+import java.io.InputStreamReader
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     `maven-publish`
+    signing
 }
 
 android {
@@ -34,8 +39,33 @@ android {
     }
 }
 
+
+//---------- maven upload info -----------------------------------
+
+var signingKeyId = "" //签名的密钥后8位
+var signingPassword = "" //签名设置的密码
+var secretKeyRingFile = "" //生成的secring.gpg文件目录
+
+val localProperties: File = project.rootProject.file("local.properties")
+
+if (localProperties.exists()) {
+    println("Found secret props file, loading props")
+    val properties = Properties()
+
+    InputStreamReader(FileInputStream(localProperties), Charsets.UTF_8).use { reader ->
+        properties.load(reader)
+    }
+    signingKeyId = properties.getProperty("signing.keyId")
+    signingPassword = properties.getProperty("signing.password")
+    secretKeyRingFile = properties.getProperty("signing.secretKeyRingFile")
+} else {
+    println("No props file, loading env vars")
+}
+
+val versionName = "1.0.1"
+
 group = "io.github.limuyang2"
-version = "1.0.1"
+version = versionName
 
 afterEvaluate {
     publishing {
@@ -44,17 +74,17 @@ afterEvaluate {
                 from(components.findByName("release"))
                 groupId = "io.github.limuyang2"
                 artifactId = "xxhash-android-native"
-                version = "1.0.1"
+                version = versionName
 
                 pom {
                     name.value("xxhash-android-native")
                     description.value("Android native JNI artifacts for xxhash.")
-                    url.value("https://github.com/limuyang2/fast-xxhash-android")
+                    url.value("https://github.com/limuyang2/fast-xxhash-kmp")
 
                     licenses {
                         license {
                             name.value("The MIT License")
-                            url.value("https://github.com/limuyang2/fast-xxhash-android/blob/main/LICENSE")
+                            url.value("https://github.com/limuyang2/fast-xxhash-kmp/blob/main/LICENSE")
                         }
                     }
 
@@ -67,9 +97,9 @@ afterEvaluate {
                     }
 
                     scm {
-                        connection.value("scm:git@github.com:limuyang2/fast-xxhash-android.git")
-                        developerConnection.value("scm:git@github.com:limuyang2/fast-xxhash-android.git")
-                        url.value("https://github.com/limuyang2/fast-xxhash-android")
+                        connection.value("scm:git@github.com:limuyang2/fast-xxhash-kmp.git")
+                        developerConnection.value("scm:git@github.com:limuyang2/fast-xxhash-kmp.git")
+                        url.value("https://github.com/limuyang2/fast-xxhash-kmp")
                     }
                 }
             }
@@ -81,4 +111,18 @@ afterEvaluate {
             }
         }
     }
+}
+
+gradle.taskGraph.whenReady {
+    if (allTasks.any { it is Sign }) {
+        allprojects {
+            extra["signing.keyId"] = signingKeyId
+            extra["signing.secretKeyRingFile"] = secretKeyRingFile
+            extra["signing.password"] = signingPassword
+        }
+    }
+}
+
+signing {
+    sign(publishing.publications)
 }
