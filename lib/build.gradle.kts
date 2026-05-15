@@ -238,12 +238,12 @@ publishing {
         pom {
             name.value("xxhash")
             description.value("A xxhash Kotlin Multiplatform library.")
-            url.value("https://github.com/limuyang2/fast-xxhash-android")
+            url.value("https://github.com/limuyang2/fast-xxhash-kmp")
 
             licenses {
                 license {
                     name.value("The MIT License")
-                    url.value("https://github.com/limuyang2/fast-xxhash-android/blob/main/LICENSE")
+                    url.value("https://github.com/limuyang2/fast-xxhash-kmp/blob/main/LICENSE")
                 }
             }
 
@@ -256,9 +256,9 @@ publishing {
             }
 
             scm {
-                connection.value("scm:git@github.com:limuyang2/fast-xxhash-android.git")
-                developerConnection.value("scm:git@github.com:limuyang2/fast-xxhash-android.git")
-                url.value("https://github.com/limuyang2/fast-xxhash-android")
+                connection.value("scm:git@github.com:limuyang2/fast-xxhash-kmp.git")
+                developerConnection.value("scm:git@github.com:limuyang2/fast-xxhash-kmp.git")
+                url.value("https://github.com/limuyang2/fast-xxhash-kmp")
             }
         }
     }

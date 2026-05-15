@@ -22,7 +22,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "xxhash-android"
+rootProject.name = "xxhash-kmp"
 include(":androidApp")
 include(":commonApp")
 include(":webApp")
