@@ -9,6 +9,56 @@ plugins {
     signing
 }
 
+val xxhashSourceDir = rootProject.layout.projectDirectory.dir("lib_android_native/src/main/cpp")
+
+fun registerXxhashStaticLibTask(
+    targetName: String,
+    sdk: String,
+    arch: String,
+    platformFlag: String,
+) = tasks.register<Exec>("buildXxhash${targetName.replaceFirstChar { it.uppercase() }}StaticLib") {
+    val outputDir = layout.buildDirectory.dir("native/xxhash/$targetName")
+    val objectFile = outputDir.map { it.file("xxhash.o") }
+    val libraryFile = outputDir.map { it.file("libxxhash.a") }
+    val sourceFile = xxhashSourceDir.file("xxhash.c")
+
+    inputs.file(sourceFile)
+    inputs.file(xxhashSourceDir.file("xxhash.h"))
+    outputs.file(libraryFile)
+
+    commandLine(
+        "sh",
+        "-c",
+        """
+        set -e
+        mkdir -p "${outputDir.get().asFile.absolutePath}"
+        SDK_PATH="${'$'}(xcrun --sdk $sdk --show-sdk-path)"
+        xcrun --sdk $sdk clang \
+          -arch $arch \
+          -isysroot "${'$'}SDK_PATH" \
+          $platformFlag \
+          -O3 \
+          -c "${sourceFile.asFile.absolutePath}" \
+          -o "${objectFile.get().asFile.absolutePath}"
+        xcrun --sdk $sdk ar rcs "${libraryFile.get().asFile.absolutePath}" "${objectFile.get().asFile.absolutePath}"
+        """.trimIndent()
+    )
+}
+
+val buildXxhashIosArm64StaticLib = registerXxhashStaticLibTask(
+    targetName = "iosArm64",
+    sdk = "iphoneos",
+    arch = "arm64",
+    platformFlag = "-miphoneos-version-min=12.0",
+)
+
+val buildXxhashIosSimulatorArm64StaticLib = registerXxhashStaticLibTask(
+    targetName = "iosSimulatorArm64",
+    sdk = "iphonesimulator",
+    arch = "arm64",
+    platformFlag = "-mios-simulator-version-min=12.0",
+)
+
 kotlin {
     compilerOptions {
         freeCompilerArgs.add("-Xexpect-actual-classes")
@@ -37,9 +87,53 @@ kotlin {
         }
     }
 
+    iosArm64 {
+        compilations.getByName("main") {
+            cinterops {
+                val xxhash by creating {
+                    defFile(project.file("src/nativeInterop/cinterop/xxhash.def"))
+                    includeDirs(xxhashSourceDir.asFile)
+                    extraOpts(
+                        "-libraryPath",
+                        layout.buildDirectory.dir("native/xxhash/iosArm64").get().asFile.absolutePath,
+                        "-staticLibrary",
+                        "libxxhash.a",
+                    )
+                    tasks.named(interopProcessingTaskName).configure {
+                        dependsOn(buildXxhashIosArm64StaticLib)
+                    }
+                }
+            }
+        }
+    }
+
+    iosSimulatorArm64 {
+        compilations.getByName("main") {
+            cinterops {
+                val xxhash by creating {
+                    defFile(project.file("src/nativeInterop/cinterop/xxhash.def"))
+                    includeDirs(xxhashSourceDir.asFile)
+                    extraOpts(
+                        "-libraryPath",
+                        layout.buildDirectory.dir("native/xxhash/iosSimulatorArm64").get().asFile.absolutePath,
+                        "-staticLibrary",
+                        "libxxhash.a",
+                    )
+                    tasks.named(interopProcessingTaskName).configure {
+                        dependsOn(buildXxhashIosSimulatorArm64StaticLib)
+                    }
+                }
+            }
+        }
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(kotlin("stdlib"))
+        }
+
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
         }
 
         androidMain.dependencies {
@@ -88,6 +182,8 @@ publishing {
         artifactId = when (name) {
             "kotlinMultiplatform" -> "xxhash"
             "android" -> "xxhash-android"
+            "iosArm64" -> "xxhash-ios-arm64"
+            "iosSimulatorArm64" -> "xxhash-ios-simulator-arm64"
             else -> artifactId
         }
 

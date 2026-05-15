@@ -35,14 +35,11 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(project(":lib"))
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
             implementation(libs.compose.ui)
-        }
-
-        androidMain.dependencies {
-            implementation(project(":lib"))
         }
     }
 }

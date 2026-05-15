@@ -1,2 +1,0 @@
-ninja: Entering directory `/Users/mumu/projects/android/xxhash_android/lib_android_native/.cxx/RelWithDebInfo/y356xr6n/x86'
-ninja: no work to do.

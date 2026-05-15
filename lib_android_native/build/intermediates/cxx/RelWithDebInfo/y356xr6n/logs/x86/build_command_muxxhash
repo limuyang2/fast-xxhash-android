@@ -1,4 +1,0 @@
-/Users/mumu/Library/Android/sdk/cmake/3.22.1/bin/ninja \
-  -C \
-  /Users/mumu/projects/android/xxhash_android/lib_android_native/.cxx/RelWithDebInfo/y356xr6n/x86 \
-  muxxhash

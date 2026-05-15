@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -24,16 +25,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import io.github.limuyang2.xxhash.lib.xxh32
+import io.github.limuyang2.xxhash.lib.xxh3As128
+import io.github.limuyang2.xxhash.lib.xxh3As64
+import io.github.limuyang2.xxhash.lib.xxh64
 
 @Composable
 fun XxHashDemoApp() {
     var input by remember { mutableStateOf("Hello, World!") }
-    val summary = remember(input) { HashCalculator.calculate(input) }
+    val summary = remember(input) { calculateHashSummary(input) }
 
     MaterialTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
             Column(
                 modifier = Modifier
+                    .statusBarsPadding()
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
                     .padding(16.dp),
@@ -50,17 +56,10 @@ fun XxHashDemoApp() {
                     maxLines = 5
                 )
 
-                if (summary.isSupported) {
-                    HashCard("XXH32", summary.xxh32)
-                    HashCard("XXH64", summary.xxh64)
-                    HashCard("XXH3-64", summary.xxh3As64)
-                    HashCard("XXH3-128", summary.xxh3As128)
-                } else {
-                    Text(
-                        summary.xxh64,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                }
+                HashCard("XXH32", summary.xxh32)
+                HashCard("XXH64", summary.xxh64)
+                HashCard("XXH3-64", summary.xxh3As64)
+                HashCard("XXH3-128", summary.xxh3As128)
             }
         }
     }
@@ -88,3 +87,18 @@ private fun HashCard(label: String, hex: String) {
         }
     }
 }
+
+private fun calculateHashSummary(input: String): HashSummary {
+    val data = input.encodeToByteArray()
+    val h128 = data.xxh3As128()
+
+    return HashSummary(
+        xxh32 = data.xxh32().toFixedHex(),
+        xxh64 = data.xxh64().toFixedHex(),
+        xxh3As64 = data.xxh3As64().toFixedHex(),
+        xxh3As128 = h128[1].toFixedHex() + h128[0].toFixedHex(),
+    )
+}
+
+private fun Long.toFixedHex(): String =
+    toULong().toString(radix = 16).padStart(16, '0')

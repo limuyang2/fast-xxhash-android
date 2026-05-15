@@ -1,0 +1,3 @@
+headers = xxhash.h
+headerFilter = xxhash.h
+package = io.github.limuyang2.xxhash.lib.cinterop
