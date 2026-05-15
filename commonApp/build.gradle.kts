@@ -46,7 +46,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(project(":lib"))
+            implementation(project(":lib"))
+//            implementation("io.github.limuyang2:xxhash:2.0.0")
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
