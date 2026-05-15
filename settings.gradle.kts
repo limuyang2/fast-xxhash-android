@@ -15,7 +15,7 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
@@ -25,5 +25,6 @@ dependencyResolutionManagement {
 rootProject.name = "xxhash-android"
 include(":androidApp")
 include(":commonApp")
+include(":webApp")
 include(":lib")
 include(":lib_android_native")

@@ -66,6 +66,15 @@ kotlin {
 
     jvm()
 
+    js {
+        nodejs()
+    }
+
+    wasmJs {
+        nodejs()
+    }
+    applyDefaultHierarchyTemplate()
+
     android {
         namespace = "io.github.limuyang2.xxhash.lib"
         compileSdk = 36
@@ -147,6 +156,9 @@ kotlin {
         }
 
         iosMain.dependencies {
+        }
+
+        webMain.dependencies {
         }
 
         getByName("androidDeviceTest").dependencies {

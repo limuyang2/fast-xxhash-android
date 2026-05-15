@@ -15,6 +15,8 @@ material = "1.13.0"
 lz4Java = "1.8.0"
 zeroAllocationHashing = "2026.0"
 
+kotlin-wrappers = "2026.5.4"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -39,6 +41,7 @@ compose-material3 = { module = "org.jetbrains.compose.material3:material3", vers
 compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMultiplatform" }
 lz4-java = { group = "org.lz4", name = "lz4-java", version.ref = "lz4Java" }
 zero-allocation-hashing = { group = "net.openhft", name = "zero-allocation-hashing", version.ref = "zeroAllocationHashing" }
+wrappers-browser = { module = "org.jetbrains.kotlin-wrappers:kotlin-browser", version.ref = "kotlin-wrappers" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
