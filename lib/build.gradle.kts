@@ -129,7 +129,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(kotlin("stdlib"))
+
         }
 
         commonTest.dependencies {
