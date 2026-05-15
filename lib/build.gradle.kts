@@ -64,6 +64,8 @@ kotlin {
         freeCompilerArgs.add("-Xexpect-actual-classes")
     }
 
+    jvm()
+
     android {
         namespace = "io.github.limuyang2.xxhash.lib"
         compileSdk = 36
@@ -129,7 +131,6 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-
         }
 
         commonTest.dependencies {
@@ -138,6 +139,14 @@ kotlin {
 
         androidMain.dependencies {
             implementation(project(":lib_android_native"))
+        }
+
+        jvmMain.dependencies {
+            implementation(libs.lz4.java)
+            implementation(libs.zero.allocation.hashing)
+        }
+
+        iosMain.dependencies {
         }
 
         getByName("androidDeviceTest").dependencies {
@@ -182,6 +191,7 @@ publishing {
         artifactId = when (name) {
             "kotlinMultiplatform" -> "xxhash"
             "android" -> "xxhash-android"
+            "jvm" -> "xxhash-jvm"
             "iosArm64" -> "xxhash-ios-arm64"
             "iosSimulatorArm64" -> "xxhash-ios-simulator-arm64"
             else -> artifactId
