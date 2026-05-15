@@ -1,0 +1,9 @@
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-pngs-0 /Users/mumu/projects/android/xxhash_android/lib_android_native/build/generated/res/pngs/debug
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-updated_navigation_xml-1 /Users/mumu/projects/android/xxhash_android/lib_android_native/build/generated/updated_navigation_xml/debug
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-mergeDebugResources-2 /Users/mumu/projects/android/xxhash_android/lib_android_native/build/intermediates/incremental/debug/mergeDebugResources/merged.dir
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-mergeDebugResources-3 /Users/mumu/projects/android/xxhash_android/lib_android_native/build/intermediates/incremental/debug/mergeDebugResources/stripped.dir
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-debug-4 /Users/mumu/projects/android/xxhash_android/lib_android_native/build/intermediates/merged_res/debug/mergeDebugResources
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-debug-5 /Users/mumu/projects/android/xxhash_android/lib_android_native/build/intermediates/packaged_res/debug/packageDebugResources
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-debug-6 /Users/mumu/projects/android/xxhash_android/lib_android_native/src/debug/res
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-main-7 /Users/mumu/projects/android/xxhash_android/lib_android_native/src/main/res
+gradleHome-0 /Users/mumu/.gradle

@@ -1,0 +1,96 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.github.limuyang2",
+    "module": "xxhash-android-native",
+    "version": "1.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "xxhash-android-native-1.0.1.aar",
+          "url": "xxhash-android-native-1.0.1.aar",
+          "size": 96855,
+          "sha512": "65ded068b838be617a1823b2fe4792bc39f04275eff43315dfaf7b8d869d47422b40978beffd742240b06a9fec6936c41fa060260ff9eddab137371e5d19e916",
+          "sha256": "9aae8919134a5be3970e55b7909952904df633652719b4a6fd19b6a60b801785",
+          "sha1": "97b836055fcb8bff870966830b3c7c3b265b8762",
+          "md5": "6464dd2186ff868bd35a64b80d31c207"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "xxhash-android-native-1.0.1.aar",
+          "url": "xxhash-android-native-1.0.1.aar",
+          "size": 96855,
+          "sha512": "65ded068b838be617a1823b2fe4792bc39f04275eff43315dfaf7b8d869d47422b40978beffd742240b06a9fec6936c41fa060260ff9eddab137371e5d19e916",
+          "sha256": "9aae8919134a5be3970e55b7909952904df633652719b4a6fd19b6a60b801785",
+          "sha1": "97b836055fcb8bff870966830b3c7c3b265b8762",
+          "md5": "6464dd2186ff868bd35a64b80d31c207"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseSourcePublication",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "xxhash-android-native-1.0.1-sources.jar",
+          "url": "xxhash-android-native-1.0.1-sources.jar",
+          "size": 1423,
+          "sha512": "dd8a00ef4a0b5fab85b8696f86492fabec2af7e2a31d9d859d0c6f082dbf7bbbd3614102e27fb84ecce85a56f65f3eb24ce76ae555db1d5ca523a69a627dd488",
+          "sha256": "5f86fc94bd23c39f9d688edf86e93a190ebd298ab2ae020ebf4b83a6435ba93b",
+          "sha1": "d600d802fe82964e3b669907c067ab7b1a665587",
+          "md5": "7fb0698e0b18722abc48c1c87de3c2bc"
+        }
+      ]
+    }
+  ]
+}

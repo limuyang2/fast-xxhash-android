@@ -1,0 +1,9 @@
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-pngs-0 /Users/mumu/projects/android/xxhash_android/lib_android_native/build/generated/res/pngs/release
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-updated_navigation_xml-1 /Users/mumu/projects/android/xxhash_android/lib_android_native/build/generated/updated_navigation_xml/release
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-mergeReleaseResources-2 /Users/mumu/projects/android/xxhash_android/lib_android_native/build/intermediates/incremental/release/mergeReleaseResources/merged.dir
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-mergeReleaseResources-3 /Users/mumu/projects/android/xxhash_android/lib_android_native/build/intermediates/incremental/release/mergeReleaseResources/stripped.dir
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-release-4 /Users/mumu/projects/android/xxhash_android/lib_android_native/build/intermediates/merged_res/release/mergeReleaseResources
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-release-5 /Users/mumu/projects/android/xxhash_android/lib_android_native/build/intermediates/packaged_res/release/packageReleaseResources
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-main-6 /Users/mumu/projects/android/xxhash_android/lib_android_native/src/main/res
+io.github.limuyang2.xxhash.lib.internal.lib_android_native-release-7 /Users/mumu/projects/android/xxhash_android/lib_android_native/src/release/res
+gradleHome-0 /Users/mumu/.gradle

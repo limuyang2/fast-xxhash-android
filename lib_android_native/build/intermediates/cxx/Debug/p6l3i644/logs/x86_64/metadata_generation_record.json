@@ -1,0 +1,17 @@
+[
+{
+  "message": "Start JSON generation. Platform version: 21 min SDK version: x86_64",
+  "file": "/Users/mumu/projects/android/xxhash_android/lib_android_native/CMakeLists.txt",
+  "tag": "debug|x86_64"
+},
+{
+  "message": "JSON \u0027/Users/mumu/projects/android/xxhash_android/lib_android_native/.cxx/Debug/p6l3i644/x86_64/android_gradle_build.json\u0027 was up-to-date",
+  "file": "/Users/mumu/projects/android/xxhash_android/lib_android_native/CMakeLists.txt",
+  "tag": "debug|x86_64"
+},
+{
+  "message": "JSON generation completed without problems",
+  "file": "/Users/mumu/projects/android/xxhash_android/lib_android_native/CMakeLists.txt",
+  "tag": "debug|x86_64"
+}
+]

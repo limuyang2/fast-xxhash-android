@@ -1,0 +1,17 @@
+[
+{
+  "message": "Start JSON generation. Platform version: 21 min SDK version: arm64-v8a",
+  "file": "/Users/mumu/projects/android/xxhash_android/lib_android_native/CMakeLists.txt",
+  "tag": "release|arm64-v8a"
+},
+{
+  "message": "JSON \u0027/Users/mumu/projects/android/xxhash_android/lib_android_native/.cxx/RelWithDebInfo/y356xr6n/arm64-v8a/android_gradle_build.json\u0027 was up-to-date",
+  "file": "/Users/mumu/projects/android/xxhash_android/lib_android_native/CMakeLists.txt",
+  "tag": "release|arm64-v8a"
+},
+{
+  "message": "JSON generation completed without problems",
+  "file": "/Users/mumu/projects/android/xxhash_android/lib_android_native/CMakeLists.txt",
+  "tag": "release|arm64-v8a"
+}
+]

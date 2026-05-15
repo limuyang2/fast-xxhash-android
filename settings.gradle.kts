@@ -23,5 +23,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "xxhash-android"
-include(":app")
+include(":androidApp")
+include(":commonApp")
 include(":lib")
+include(":lib_android_native")
